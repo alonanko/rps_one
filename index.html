@@ -5,25 +5,41 @@
   <title></title>
 </head>
 <body>
-  <button class="btn" id="rock">rock</button>
-  <button class="btn" id="paper">paper</button>
-  <button class="btn" id="scissors">scissors</button>
+  <div>
+    <button class="btn" id="rock">rock</button>
+    <button class="btn" id="paper">paper</button>
+    <button class="btn" id="scissors">scissors</button>
+  </div>
 
-  <div class="score" id="container"></div>
+  <div class="scoreboard" id="container">
+    <h1 class="score" id="pScore">You</h1>
+    <h1 class="score" id="cScore">Computer</h1>
+  </div>
 </body>
 
 <script>
   var p = 0;
   var c = 0;
 
+  function resetScore(){
+    p = 0;
+    c = 0;
+  }
+
   function updateScore(you, comp){
     p += you;
     c += comp; 
-    playerScore.textContent = "You: " + p;
-    compScore.textContent = "Computer: " + c;
+    playerScore.textContent =  p;
+    compScore.textContent = c;
 
-    if(p==5) alert("You Win");
-    if(c==5) alert("You Lose");
+    if(p==5) {
+      alert("You Win");
+      resetScore();
+    }
+    if(c==5) {
+      alert("You Lose");
+      resetScore();
+    }
   }
 
   function computerPlay(){
@@ -43,13 +59,14 @@
   }
 
   const playerScore = document.createElement('p');
-  playerScore.id = "pScore";
-  playerScore.textContent = "You: " + `${p}`;
-  container.appendChild(playerScore);
+  playerScore.classList.add = "score";
+  playerScore.textContent = `${p}`;
+  pScore.appendChild(playerScore);
 
   const compScore = document.createElement('p');
-  compScore.textContent = "Computer: " + `${c}`;
-  container.appendChild(compScore);
+  playerScore.classList.add = "score";
+  compScore.textContent = `${c}`;
+  cScore.appendChild(compScore);
 
   const buttons = document.querySelectorAll('button');
   buttons.forEach(btn => btn.addEventListener("click", (e) => playRound(btn.id,computerPlay())));
