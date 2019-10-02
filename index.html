@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+</body>
+
+<script>
+  function computerPlay(){
+    a = ["rock", "paper", "scissors"];
+    return a[Math.floor(Math.random()*3)];
+  }
+
+  function playRound(playerSelection, computerSelection){
+    console.log(playerSelection);
+    console.log(computerSelection);
+    if(playerSelection == computerSelection) console.log("Draw");
+    if(playerSelection == "rock" && computerSelection == "paper") console.log("You Lose");
+    if(playerSelection == "rock" && computerSelection == "scissors") console.log("You Win");
+    if(playerSelection == "paper" && computerSelection == "rock") console.log("You Win");
+    if(playerSelection == "paper" && computerSelection == "scissors") console.log("You Lose");
+    if(playerSelection == "scissors" && computerSelection == "rock") console.log("You Lose");
+    if(playerSelection == "scissors" && computerSelection == "paper") console.log("You Win");
+  }
+
+  playerPlay = prompt("Choose");
+  playRound(playerPlay, computerPlay());
+
+</script>
+</html>
+
