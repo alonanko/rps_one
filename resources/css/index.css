@@ -1,0 +1,19 @@
+.btn {
+    width: 200px;
+    height: 100px;
+    position: relative;
+    top: 50px;
+    left: 300px;
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.score {
+    position: relative;
+    top: 100px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+}

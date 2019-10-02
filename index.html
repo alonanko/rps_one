@@ -1,31 +1,58 @@
+<link href="./resources/css/index.css" type="text/css" rel="stylesheet">
 <!DOCTYPE html>
 <html>
 <head>
   <title></title>
 </head>
 <body>
+  <button class="btn" id="rock">rock</button>
+  <button class="btn" id="paper">paper</button>
+  <button class="btn" id="scissors">scissors</button>
+
+  <div class="score" id="container"></div>
 </body>
 
 <script>
+  var p = 0;
+  var c = 0;
+
+  function updateScore(you, comp){
+    p += you;
+    c += comp; 
+    playerScore.textContent = "You: " + p;
+    compScore.textContent = "Computer: " + c;
+
+    if(p==5) alert("You Win");
+    if(c==5) alert("You Lose");
+  }
+
   function computerPlay(){
     a = ["rock", "paper", "scissors"];
     return a[Math.floor(Math.random()*3)];
   }
-
   function playRound(playerSelection, computerSelection){
     console.log(playerSelection);
     console.log(computerSelection);
     if(playerSelection == computerSelection) console.log("Draw");
-    if(playerSelection == "rock" && computerSelection == "paper") console.log("You Lose");
-    if(playerSelection == "rock" && computerSelection == "scissors") console.log("You Win");
-    if(playerSelection == "paper" && computerSelection == "rock") console.log("You Win");
-    if(playerSelection == "paper" && computerSelection == "scissors") console.log("You Lose");
-    if(playerSelection == "scissors" && computerSelection == "rock") console.log("You Lose");
-    if(playerSelection == "scissors" && computerSelection == "paper") console.log("You Win");
+    if(playerSelection == "rock" && computerSelection == "paper") updateScore(0,1);
+    if(playerSelection == "rock" && computerSelection == "scissors") updateScore(1,0);
+    if(playerSelection == "paper" && computerSelection == "rock") updateScore(1,0);
+    if(playerSelection == "paper" && computerSelection == "scissors") updateScore(0,1);
+    if(playerSelection == "scissors" && computerSelection == "rock") updateScore(0,1);
+    if(playerSelection == "scissors" && computerSelection == "paper") updateScore(1,0);    
   }
 
-  playerPlay = prompt("Choose");
-  playRound(playerPlay, computerPlay());
+  const playerScore = document.createElement('p');
+  playerScore.id = "pScore";
+  playerScore.textContent = "You: " + `${p}`;
+  container.appendChild(playerScore);
+
+  const compScore = document.createElement('p');
+  compScore.textContent = "Computer: " + `${c}`;
+  container.appendChild(compScore);
+
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(btn => btn.addEventListener("click", (e) => playRound(btn.id,computerPlay())));
 
 </script>
 </html>
